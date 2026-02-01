@@ -28,6 +28,9 @@ grid = [[' ' for _ in range(20)] for _ in range(10)]
 player_x = 0
 player_y = 0
 
+# The number of rounds the player has in their rifle.
+rounds = 5
+
 # Routine that evaluates the squares surrounding the player character.
 def surrounding_eval():
     # Make list of surrounding squares to be evaluated.
@@ -114,6 +117,9 @@ def initialize():
     # Place the player at the topmost left square (0, 0)
     grid[0][0] = 'P'
     player_x = player_y = 0
+    
+    # The player starts off with 5 rounds in their rifle.
+    rounds = 5
     
     # Start the game!
     #play()
