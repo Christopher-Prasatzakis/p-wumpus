@@ -171,6 +171,18 @@ def surrounding_eval():
         elif (grid[square_y][square_x] == 'F'):
             print(f"You feel a breeze coming from the {direction}...")
 
+# The main game loop.
+def play():
+    while (True):
+        # Check the player's surroundings first.
+        surrounding_eval()
+        
+        # Await player input.
+        command = input("> ")
+        
+        # Process player input.
+        command_eval(command)
+        
 # Generate a random level and start the game.
 def initialize():
     seed(time()) # Randomize timer.
@@ -233,4 +245,13 @@ def initialize():
     
     # Start the game!
     game_running = True
-    #play()
+    play()
+    
+# The main function.
+def main():
+    print("P-Wumpus  Copyright (C) 2026 Christopher Prasatzakis")
+    print("This program comes with ABSOLUTELY NO WARRANTY;")
+    print("This is free software, and you are welcome to redistribute it")
+    print("under certain conditions; see LICENSE for details.\n")
+    print("New game starting...\n")
+    initialize()
