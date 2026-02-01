@@ -84,3 +84,6 @@ def initialize():
     # Place the player at the topmost left square (0, 0)
     grid[0][0] = 'P'
     player_x = player_y = 0
+    
+    # Start the game!
+    #play()
