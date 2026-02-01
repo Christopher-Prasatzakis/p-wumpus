@@ -8,8 +8,8 @@ Good luck, adventurer. You will need it.
 # Playing the game
 This is a text adventure-style game. You play it by entering commands in a command prompt. These are the commands you can use:
 
-1) north, south, west and east: Move to the respective square adjacent to the one your player character is (you always start at square (0, 0) - the top left of the grid).
-2) fire <north, south, east, west>: Fire your rifle at that square adjacent to yours. If there is a Wumpus there, it kills it.
+1) n(orth), s(outh), w(est) and e(ast): Move to the respective square adjacent to the one your player character is (you always start at square (0, 0) - the top left of the grid).
+2) fire <n(orth), s(outh), e(ast), w(est)>: Fire your rifle at that square adjacent to yours. If there is a Wumpus there, it kills it.
 3) restart: Restart the game. Useful in the event something breaks or you find yourself in an unwinnable position.
 4) quit: Self-explainatory.
 

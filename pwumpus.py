@@ -56,24 +56,26 @@ def command_eval(command):
     global player_x, player_y, rounds, n_wumpi
     
     directions = ["NORTH", "EAST", "WEST", "SOUTH"]
+    directions_short = "NEWS"
     fires = ["FIRE NORTH", "FIRE EAST", "FIRE WEST", "FIRE SOUTH"]
+    fires_short = ["FIRE N", "FIRE E", "FIRE W", "FIRE S"]
     
     # Capitalize user input.
     command_r = command.upper()
     
     # Evaluate direction commands first.
-    if (command_r in directions):
+    if ((command_r in directions) or (command_r in directions_short)):
         x = player_x
         y = player_y
         
         # Calculate new player position.
-        if (command_r == "NORTH"):
+        if (command_r[0] == "N"):
             y = y - 1
-        elif (command_r == "EAST"):
+        elif (command_r[0] == "E"):
             x = x + 1
-        elif (command_r == "WEST"):
+        elif (command_r[0] == "W"):
             x = x - 1
-        elif (command_r == "SOUTH"):
+        elif (command_r[0] == "S"):
             y = y + 1
             
         # Examine the scenarios where a move is either illegal
@@ -95,7 +97,7 @@ def command_eval(command):
                 grid[player_y][player_x] = ' '
                 player_y = y
                 player_x = x
-    elif (command_r in fires):
+    elif ((command_r in fires) or (command_r in fires_short)):
         # First of all, can the rifle fire?
         if (rounds == 0):
             print("Your rifle is out of ammunition.")
@@ -107,13 +109,13 @@ def command_eval(command):
             x = player_x
             y = player_y
         
-            if (firing_direction == "NORTH"):
+            if (firing_direction[0] == "N"):
                 y = y - 1
-            elif (firing_direction == "EAST"):
+            elif (firing_direction[0] == "E"):
                 x = x + 1
-            elif (firing_direction == "WEST"):
+            elif (firing_direction[0] == "W"):
                 x = x - 1
-            elif (firing_direction == "SOUTH"):
+            elif (firing_direction[0] == "S"):
                 y = y + 1
                 
             if (y < 0): y = 0
