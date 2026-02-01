@@ -190,6 +190,8 @@ def play():
         # Await player input.
         command = input("> ")
         
+        if (command == ''): continue
+        
         # Process player input.
         command_eval(command)
         
