@@ -20,6 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from time import time
 from random import seed
 from random import randint
+from sys import exit
 
 # The game grid.
 grid = [[' ' for _ in range(20)] for _ in range(10)]
@@ -45,13 +46,15 @@ def game_over():
         inp = input("Do you want to (R)estart or (Q)uit? ")[0]
         
     if (inp.upper() == 'Q'):
-        quit()
+        exit()
     else:
         print("Let's play again, then!")
         initialize()
 
 # Routine that evaluates a command given by the player.
 def command_eval(command):
+    global player_x, player_y, rounds, n_wumpi
+    
     directions = ["NORTH", "EAST", "WEST", "SOUTH"]
     fires = ["FIRE NORTH", "FIRE EAST", "FIRE WEST", "FIRE SOUTH"]
     
@@ -87,7 +90,7 @@ def command_eval(command):
             elif (grid[y][x] == 'G'):
                 print("You found the treasure! Yaaaaaaaaaaay!!!")
                 game_over()
-            else
+            else:
                 grid[y][x] = 'P'
                 grid[player_y][player_x] = ' '
                 player_y = y
@@ -112,6 +115,11 @@ def command_eval(command):
                 x = x - 1
             elif (firing_direction == "SOUTH"):
                 y = y + 1
+                
+            if (y < 0): y = 0
+            if (y > 9): y = 9
+            if (x < 0): x = 0
+            if (x > 19): x = 19
             
             # Did the bullet hit a Wumpus?
             if (grid[y][x] == 'W'):
@@ -137,7 +145,7 @@ def command_eval(command):
         
         if (inp == 'Y'):
             print("\nThank you for playing P-Wumpus!")
-            quit()
+            exit()
     else:
         print("I did not recognize this command.")
 
@@ -185,7 +193,11 @@ def play():
         
 # Generate a random level and start the game.
 def initialize():
+    global n_wumpi, player_x, player_y, rounds, grid
+    
     seed(time()) # Randomize timer.
+    
+    grid = [[' ' for _ in range(20)] for _ in range(10)] # Initialize grid.
     
     n_wumpi = randint(1, 5) # How many wumpi will there be?
     
@@ -244,7 +256,6 @@ def initialize():
     rounds = 5
     
     # Start the game!
-    game_running = True
     play()
     
 # The main function.
@@ -255,3 +266,5 @@ def main():
     print("under certain conditions; see LICENSE for details.\n")
     print("New game starting...\n")
     initialize()
+    
+main()
