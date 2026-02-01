@@ -28,6 +28,36 @@ grid = [[' ' for _ in range(20)] for _ in range(10)]
 player_x = 0
 player_y = 0
 
+# Routine that evaluates the squares surrounding the player character.
+def surrounding_eval():
+    # Make list of surrounding squares to be evaluated.
+    squares = []
+    
+    if (player_y > 0):
+        squares.append((player_x, player_y - 1, "north"))
+        
+    if (player_y < 9):
+        squares.append((player_x, player_y + 1, "south"))
+        
+    if (player_x < 19):
+        squares.append((player_x + 1, player_y, "east"))
+        
+    if (player_x > 0):
+        squares.append((player_x - 1, player_y, "west"))
+        
+    # Evaluate the adjacent squares.
+    for square in squares:
+        square_x = square[0]
+        square_y = square[1]
+        direction = square[2]
+        
+        if (grid[square_y][square_x] == 'W'):
+            print(f"You smell something horrible to the {direction}...")
+        elif (grid[square_y][square_x] == 'G'):
+            print(f"You see something glittering to the {direction}...")
+        elif (grid[square_y][square_x] == 'F'):
+            print(f"You feel a breeze coming from the {direction}...")
+
 # Generate a random level and start the game.
 def initialize():
     seed(time()) # Randomize timer.
