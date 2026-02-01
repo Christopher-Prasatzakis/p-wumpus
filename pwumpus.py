@@ -31,6 +31,116 @@ player_y = 0
 # The number of rounds the player has in their rifle.
 rounds = 5
 
+# Let's also make the number of wumpi global...
+n_wumpi = 1
+
+# What to do in a Game Over situation.
+def game_over():
+    print("\nGame Over\n")
+    
+    # Let the player decide.
+    inp = input("Do you want to (R)estart or (Q)uit? ")[0]
+    
+    while (inp not in "qQrR"):
+        inp = input("Do you want to (R)estart or (Q)uit? ")[0]
+        
+    if (inp.upper() == 'Q'):
+        quit()
+    else:
+        print("Let's play again, then!")
+        initialize()
+
+# Routine that evaluates a command given by the player.
+def command_eval(command):
+    directions = ["NORTH", "EAST", "WEST", "SOUTH"]
+    fires = ["FIRE NORTH", "FIRE EAST", "FIRE WEST", "FIRE SOUTH"]
+    
+    # Capitalize user input.
+    command_r = command.upper()
+    
+    # Evaluate direction commands first.
+    if (command_r in directions):
+        x = player_x
+        y = player_y
+        
+        # Calculate new player position.
+        if (command_r == "NORTH"):
+            y = y - 1
+        elif (command_r == "EAST"):
+            x = x + 1
+        elif (command_r == "WEST"):
+            x = x - 1
+        elif (command_r == "SOUTH"):
+            y = y + 1
+            
+        # Examine the scenarios where a move is either illegal
+        # or results in a Game Over.
+        if (((x < 0) or (x > 19)) or ((y < 0) or (y > 9))):
+            print("Can't go that way, sorry.")
+        else:
+            if (grid[y][x] == 'W'):
+                print("You were eaten by a Wumpus. Too bad!")
+                game_over()
+            elif (grid[y][x] == 'F'):
+                print("You fell into a pitfall to your death.")
+                game_over()
+            elif (grid[y][x] == 'G'):
+                print("You found the treasure! Yaaaaaaaaaaay!!!")
+                game_over()
+            else
+                grid[y][x] = 'P'
+                grid[player_y][player_x] = ' '
+                player_y = y
+                player_x = x
+    elif (command_r in fires):
+        # First of all, can the rifle fire?
+        if (rounds == 0):
+            print("Your rifle is out of ammunition.")
+        else:
+            # For firing, get the firing direction.
+            firing_direction = command_r.split()[1]
+        
+            # Where should the bullet go?
+            x = player_x
+            y = player_y
+        
+            if (firing_direction == "NORTH"):
+                y = y - 1
+            elif (firing_direction == "EAST"):
+                x = x + 1
+            elif (firing_direction == "WEST"):
+                x = x - 1
+            elif (firing_direction == "SOUTH"):
+                y = y + 1
+            
+            # Did the bullet hit a Wumpus?
+            if (grid[y][x] == 'W'):
+                print("You hear a beastly scream and a death rattle...")
+                n_wumpi = n_wumpi - 1
+                grid[y][x] = ' '
+                print(f"There are now {n_wumpi} Wumpi remaining...")
+            else:
+                print("You fire your rifle into thin air...")
+                
+            rounds = rounds - 1
+            print(f"Your rifle has now {rounds} rounds remaining...")
+    elif (command_r == "RESTART"):
+        inp = input("Do you want to restart the game (Y/N)? ")[0]
+        inp = inp.upper()
+        
+        if (inp == 'Y'):
+            print("\nRestarting...")
+            initialize()
+    elif (command_r == "QUIT"):
+        inp = input("Do you want to quit (Y/N)? ")[0]
+        inp = inp.upper()
+        
+        if (inp == 'Y'):
+            print("\nThank you for playing P-Wumpus!")
+            quit()
+    else:
+        print("I did not recognize this command.")
+
 # Routine that evaluates the squares surrounding the player character.
 def surrounding_eval():
     # Make list of surrounding squares to be evaluated.
@@ -122,4 +232,5 @@ def initialize():
     rounds = 5
     
     # Start the game!
+    game_running = True
     #play()
