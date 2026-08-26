@@ -6,6 +6,12 @@ You start off with a rifle containing only five rounds. Your mission is simple: 
 Good luck, adventurer. You will need it.
 
 # Playing the game
+Running the game is pretty easy and can be done in three simple steps:
+
+1) Install Python (https://www.python.org/)
+2) Run pwumpus.py with this command on a terminal: python3 pwumpus.py
+3) Enjoy!
+
 This is a text adventure-style game. You play it by entering commands in a command prompt. These are the commands you can use:
 
 1) n(orth), s(outh), w(est) and e(ast): Move to the respective square adjacent to the one your player character is (you always start at square (0, 0) - the top left of the grid).
