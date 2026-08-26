@@ -5,7 +5,7 @@ You start off with a rifle containing only five rounds. Your mission is simple: 
 
 Good luck, adventurer. You will need it.
 
-# Playing the game
+## Playing the game
 Running the game is pretty easy and can be done in three simple steps:
 
 1) Install Python (https://www.python.org/)
@@ -19,7 +19,7 @@ This is a text adventure-style game. You play it by entering commands in a comma
 3) restart: Restart the game. Useful in the event something breaks or you find yourself in an unwinnable position.
 4) quit: Self-explainatory.
 
-# Licensing information
+## Licensing information
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License  (LICENSE) for more details.
